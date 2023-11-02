@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Analysis Result</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Nunito', sans-serif;
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Lexend', sans-serif;
+            font-weight: bold;
+            color: #A020F0; /* Lilac color */
+        }
+        .centered {
+            text-align: center;
+            font-family: 'Lexend', sans-serif;
+        }
+    </style>
+    <!-- Link the Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&family=Nunito:wght@400;700&display=swap">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>RIKSTOCK</h1>
+    <div class="centered">
+        <h2>Stock Analysis Result</h2>
+        <p>Stock Symbol: {{ stock_symbol }}</p>
+    </div>
+
+    <div id="stock-chart" class="centered"></div>
+
+    <div class="centered">
+        <p>{{ advice }}</p>
+        <p>Average Price (30 days): {{ average_price }}</p>
+        <p>Current Price: {{ current_price }}</p>
+        <p>Price Change: {{ price_change }}</p>
+        <p>Percentage Change: {{ percentage_change }}%</p>
+        <p>Trading Volume (Today): {{ volume_today }}</p>
+        <p>Average Trading Volume (30 days): {{ average_volume }}</p>
+    </div>
+    
+    <script>
+        var graphJson = {{ graph_json | tojson | safe }};
+        Plotly.newPlot('stock-chart', JSON.parse(graphJson), {});
+    </script>
+</body>
+</html>
