@@ -1,0 +1,2 @@
+# rikstock
+ Basic stock analysis
